@@ -24,7 +24,7 @@ public class Team {
 	private Long id;
 	
 	@OneToOne
-	private SoftwareDeveloper teamLead;
+	private ProjectManager teamLead;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "TEAM_EMPLOYEE", 
@@ -44,7 +44,7 @@ public class Team {
 		return teamLead;
 	}
 
-	public void setTeamLead(SoftwareDeveloper teamLead) {
+	public void setTeamLead(ProjectManager teamLead) {
 		this.teamLead = teamLead;
 	}
 
