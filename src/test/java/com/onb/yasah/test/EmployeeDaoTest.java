@@ -34,13 +34,16 @@ public class EmployeeDaoTest {
 	@Test
 	public void update(){
 		Employee employee = new Employee();
-		employee.setId(Long.parseLong("32768"));
-		employee.setFirstName("elyasah");
-		employee.setMiddleName("frialde");
-		employee.setLastName("loresco");
-		employeeDAO.update(employee);
+		employee.setFirstName("Eleasah");
+		employee.setMiddleName("Frialde");
+		employee.setLastName("Loresco");
+		employeeDAO.save(employee);
+		List<Employee> employees = employeeDAO.findExactMatches(employee);
+		Employee retrieveEmployee = employees.get(0);
+		retrieveEmployee.setFirstName("Test");
+		employeeDAO.update(retrieveEmployee);
 		
-		assertEquals("elyasah", employee.getFirstName());
+		assertTrue(employeeDAO.findExactMatches(retrieveEmployee).isEmpty() == false);
 	}
 	
 	@Test
@@ -49,18 +52,26 @@ public class EmployeeDaoTest {
 		employee.setFirstName("elyasah");
 		employee.setMiddleName("frialde");
 		employee.setLastName("loresco");
+		employeeDAO.save(employee);
 		List<Employee> employees = employeeDAO.listOfEmployees();
 		
-		assertTrue(employees.contains(employee));
+		assertTrue(employees.size() == 1);
 	}
 	
 	@Test
 	public void delete(){
+		Employee employee = new Employee();
+		employee.setFirstName("elyasah");
+		employee.setMiddleName("frialde");
+		employee.setLastName("loresco");
+		employeeDAO.save(employee);
 		List<Employee> employees = employeeDAO.listOfEmployees();
-		Employee employee = employees.get(0);
-		employeeDAO.delete(employee);
+		assertTrue(employees.size() == 1);
 		
-		assertNull(employeeDAO.find(employee.getId()));
+		Employee employee1 = employees.get(0);
+		employeeDAO.delete(employee1);
+		
+		assertNull(employeeDAO.find(employee1.getId()));
 	}
 	
 	
@@ -70,10 +81,10 @@ public class EmployeeDaoTest {
 		employee.setFirstName("elyasah");
 		employee.setMiddleName("frialde");
 		employee.setLastName("loresco");
-		
+		employeeDAO.save(employee);
 		List<Employee> employees = employeeDAO.findExactMatches(employee);
 		
-		assertTrue(employees.contains(employee));
+		assertTrue(employees.size() == 1);
 	}
 	
 	@Test
@@ -82,15 +93,10 @@ public class EmployeeDaoTest {
 		employee.setFirstName("elyasah");
 		employee.setMiddleName("Frialde");
 		employee.setLastName("loresco");
-		
+		employeeDAO.save(employee);
 		List<Employee> employees = employeeDAO.findAnyMatch(employee); 
 		
-		Employee employee2 = new Employee();
-		employee2.setFirstName("elyasah");
-		employee2.setMiddleName("frialde");
-		employee2.setLastName("loresco");
-		
-		assertTrue(employees.contains(employee2));
+		assertTrue(employees.size() == 1);
 	}
 	
 	@Test
