@@ -5,3 +5,4 @@ logs
 .settings
 .classpath
 .project
+src/main/resources/properties/databaselocal.properties
