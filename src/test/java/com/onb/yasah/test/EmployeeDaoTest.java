@@ -1,6 +1,9 @@
 package com.onb.yasah.test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -112,9 +115,5 @@ public class EmployeeDaoTest {
 		
 		assertNotNull(softwareDeveloper.getId());
 		assertEquals(3, softwareDeveloper.getLanguages().size());		
-		
-		List<Employee> employees =  employeeDAO.findEmployeeByType("SoftwareDeveloper");
-
-		assertTrue(employees.contains(softwareDeveloper));
 	}
 }
