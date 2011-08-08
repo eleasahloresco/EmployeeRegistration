@@ -3,9 +3,9 @@ package com.onb.yasah.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,10 +23,10 @@ public class Team {
 	@Column(name = "TEAM_ID")
 	private Long id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private SoftwareDeveloper teamLead;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "TEAM_EMPLOYEE", 
 			joinColumns = { @JoinColumn(name = "TEAM_ID") }, 
 			inverseJoinColumns = { @JoinColumn(name = "EMPLOYEE_ID") })
