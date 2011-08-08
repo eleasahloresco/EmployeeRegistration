@@ -100,11 +100,21 @@ public class EmployeeDaoTest {
 	}
 	
 	@Test
-	public void findEmployeeWithSoftwareDeveloperType() throws Exception {
-		List<Employee> employees =  employeeDAO.findEmployeeByType("SoftwareDeveloper");
+	public void findEmployeeByType() throws Exception {
+		SoftwareDeveloper softwareDeveloper = new SoftwareDeveloper();
+		softwareDeveloper.setFirstName("Eleasah");
+		softwareDeveloper.setMiddleName("Frialde");
+		softwareDeveloper.setLastName("Loresco");
+		softwareDeveloper.getLanguages().add("Java");
+		softwareDeveloper.getLanguages().add("Groovy");
+		softwareDeveloper.getLanguages().add("HQL");
+		employeeDAO.save(softwareDeveloper);
 		
-		for (Employee employee : employees) {
-			System.out.println(employee);
-		}
+		assertNotNull(softwareDeveloper.getId());
+		assertEquals(3, softwareDeveloper.getLanguages().size());		
+		
+		List<Employee> employees =  employeeDAO.findEmployeeByType("SoftwareDeveloper");
+
+		assertTrue(employees.contains(softwareDeveloper));
 	}
 }

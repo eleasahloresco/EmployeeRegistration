@@ -65,7 +65,8 @@ public class EmployeeDAOImpl extends CustomHibernateDaoSupport implements Employ
 		String SQL_QUERY =" select employee from Employee employee, " +
 			type + " typeName " +
 			"where employee.id = typeName.id";
+				
+		return getHibernateTemplate().find(SQL_QUERY);	
 		
-		return getHibernateTemplate().find(SQL_QUERY);			
 	}
 }
