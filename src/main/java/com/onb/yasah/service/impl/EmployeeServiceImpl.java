@@ -35,4 +35,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDAO.listOfEmployees();
 	}
 
+	public Employee find(Long id) {
+		return employeeDAO.find(id);
+	}
+
+	public List<Employee> findExactMatches(Employee employee) {
+		return employeeDAO.findExactMatches(employee);
+	}
+
+	public List<Employee> findAnyMatch(Employee employee) {
+		return employeeDAO.findAnyMatch(employee);
+	}
+
+	public List<Employee> findEmployeeByType(String type) {
+		return employeeDAO.findEmployeeByType(type);
+	}
+
 }
