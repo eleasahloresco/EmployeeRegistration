@@ -55,7 +55,7 @@ public class EmployeeDaoTest {
 		employeeDAO.save(employee);
 		List<Employee> employees = employeeDAO.listOfEmployees();
 		
-		assertTrue(employees.size() == 1);
+		assertTrue(employees.contains(employee));
 	}
 	
 	@Test
@@ -66,7 +66,7 @@ public class EmployeeDaoTest {
 		employee.setLastName("loresco");
 		employeeDAO.save(employee);
 		List<Employee> employees = employeeDAO.listOfEmployees();
-		assertTrue(employees.size() == 1);
+		assertTrue(employees.size() > 0);
 		
 		Employee employee1 = employees.get(0);
 		employeeDAO.delete(employee1);
@@ -84,7 +84,7 @@ public class EmployeeDaoTest {
 		employeeDAO.save(employee);
 		List<Employee> employees = employeeDAO.findExactMatches(employee);
 		
-		assertTrue(employees.size() == 1);
+		assertTrue(employees.contains(employee));
 	}
 	
 	@Test
@@ -96,7 +96,7 @@ public class EmployeeDaoTest {
 		employeeDAO.save(employee);
 		List<Employee> employees = employeeDAO.findAnyMatch(employee); 
 		
-		assertTrue(employees.size() == 1);
+		assertTrue(employees.contains(employee));
 	}
 	
 	@Test
